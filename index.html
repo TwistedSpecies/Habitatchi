@@ -147,7 +147,7 @@ body:not(.kid) .alert{background:var(--bg2)}
 #mp{position:fixed;inset:0;background:#000b;z-index:70;display:none;align-items:flex-end;justify-content:center}#mp.on{display:flex}#mp .sheet{background:var(--card);color:var(--tx);width:min(100%,420px);border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto;box-sizing:border-box}
 #mp h2{margin:0 0 10px;font-size:20px}.mpi{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;color:var(--tx);border:1px solid var(--line);border-radius:16px;padding:10px 12px;margin-bottom:8px;box-shadow:none}.mpi b{font-size:34px}.mpi small{display:block;opacity:.75}.mpi.cur{border-color:var(--bt,#f5b400);border-width:2px}.mpg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mpg .mpi{flex-direction:column;text-align:center;padding:16px 8px}#mp input{width:100%;box-sizing:border-box;font-size:20px;padding:12px;border-radius:14px;border:1px solid var(--line);background:transparent;color:var(--tx);margin:8px 0 12px}
 .stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
-.pet{width:150px;height:150px;line-height:0;cursor:pointer;animation:buddyFloat 2.8s ease-in-out infinite;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;filter:drop-shadow(0 8px 10px #0002)}
+.pet{width:158px;height:158px;line-height:0;cursor:pointer;animation:buddyFloat 2.8s ease-in-out infinite;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;filter:drop-shadow(0 8px 10px #0002)}
 .pet svg{width:100%;height:100%;overflow:visible;display:block}
 .pet .buddy-body{transform-origin:50% 70%;animation:buddyBreath 2.8s ease-in-out infinite}
 .pet .buddy-eye{transform-box:fill-box;transform-origin:center;animation:buddyBlink 4.8s infinite}
@@ -178,10 +178,10 @@ body:not(.kid) .alert{background:var(--bg2)}
 .g3b{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}.g3b button{padding:16px 4px;font-size:15px}
 .bpink{background:#e0559b}
 .evo{position:fixed;inset:0;background:#000c;display:none;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:30;font-size:22px;font-weight:800;text-align:center;padding:20px}.evo.on{display:flex}
-.evoE{font-size:140px;animation:evoA 1.4s ease-out}
+.evoE{width:190px;height:190px;animation:evoA 1.4s ease-out}.evoE svg{width:100%;height:100%}
 @keyframes evoA{0%{transform:scale(0) rotate(-360deg)}60%{transform:scale(1.3) rotate(20deg)}100%{transform:scale(1) rotate(0)}}
 #loveM{background:#e0559b}
-.pet{width:136px;height:136px}
+.pet{width:145px;height:145px}
 .game{position:fixed;inset:0;z-index:25;display:none;flex-direction:column;background:linear-gradient(160deg,var(--bg),var(--bg2));padding:calc(12px + env(safe-area-inset-top,0px)) 12px calc(12px + env(safe-area-inset-bottom,0px))}.game.on{display:flex}
 .ghd{display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:800}
 #field{position:relative;flex:1;overflow:hidden;touch-action:none;margin-top:8px;border-radius:18px;background:#ffffff14}
@@ -511,13 +511,83 @@ const SPEC={bird:{e:"🐥",n:"Chick to dragon",hue:0,b:"🪶"},cat:{e:"🐱",n:"
 const GEN=[null,["Peeking out","Who's that?","Chasing a butterfly"],["Chasing a butterfly","Sunbathing","Breakfast time"],["Watching from the cliff","Stargazing","Sunbathing"],["Toasting marshmallows","Guarding the treasure","Stargazing"],["Dancing","Making a rainbow","Juggling stars"],["Meditating","Juggling stars","Guarding the sky gate"]];
 function applyLadder(k){const L=LAD[(k.pet&&k.pet.sp)||"bird"]||LAD.bird;STAGES.forEach((s,i)=>{s[1]=L[i][0];s[2]=L[i][1]})}
 function petSvg(sp,stage,state="idle"){
- const s=Math.max(0,Math.min(6,stage));
- const baby=s===0, mature=s>=4, legendary=s===6;
- const cls=state+" "+(baby?"baby ":"")+(mature?"mature ":"")+(legendary?"legendary ":"");
- if(sp==="cat") return `<svg viewBox="0 0 180 180" aria-label="pet"><g class="buddy-body ${cls}"><path class="buddy-tail" d="M34 113 C8 104 10 72 32 76" fill="none" stroke="#c7834d" stroke-width="14" stroke-linecap="round"/><path d="M42 66 L47 34 L69 53" fill="#e6a766" stroke="#75452c" stroke-width="4"/><path d="M111 53 L133 34 L138 66" fill="#e6a766" stroke="#75452c" stroke-width="4"/><ellipse cx="90" cy="105" rx="57" ry="48" fill="#e6a766" stroke="#75452c" stroke-width="5"/><ellipse cx="90" cy="121" rx="35" ry="25" fill="#ffd7a5"/><ellipse class="buddy-eye" cx="68" cy="94" rx="7" ry="9" fill="#30241f"/><ellipse class="buddy-eye delay" cx="112" cy="94" rx="7" ry="9" fill="#30241f"/><circle cx="66" cy="91" r="2.5" fill="white"/><circle cx="110" cy="91" r="2.5" fill="white"/><path d="M84 107 Q90 112 96 107" fill="none" stroke="#75452c" stroke-width="3" stroke-linecap="round"/><path d="M89 105 L91 105" stroke="#75452c" stroke-width="4" stroke-linecap="round"/><path class="buddy-paw" d="M52 127 Q60 119 68 128" fill="none" stroke="#75452c" stroke-width="8" stroke-linecap="round"/><path class="buddy-paw" d="M112 128 Q120 119 128 127" fill="none" stroke="#75452c" stroke-width="8" stroke-linecap="round"/>${mature?'<path d="M48 69 Q90 43 132 69" fill="none" stroke="#f7c95d" stroke-width="5" stroke-linecap="round"/>':''}</g><circle class="buddy-shine" cx="54" cy="61" r="5" fill="#fff" opacity=".7"/></svg>`;
- if(sp==="dog") return `<svg viewBox="0 0 180 180" aria-label="pet"><g class="buddy-body ${cls}"><path class="buddy-tail" d="M137 112 C169 112 168 76 145 78" fill="none" stroke="#9a6a43" stroke-width="13" stroke-linecap="round"/><path d="M51 61 Q24 28 38 19 Q61 26 68 58" fill="#8f603d" stroke="#5f402d" stroke-width="5"/><path d="M129 61 Q156 28 142 19 Q119 26 112 58" fill="#8f603d" stroke="#5f402d" stroke-width="5"/><ellipse cx="90" cy="104" rx="58" ry="51" fill="#c98a52" stroke="#5f402d" stroke-width="5"/><ellipse cx="90" cy="121" rx="33" ry="27" fill="#f1c38e"/><ellipse class="buddy-eye" cx="69" cy="91" rx="7" ry="9" fill="#2b211d"/><ellipse class="buddy-eye delay" cx="111" cy="91" rx="7" ry="9" fill="#2b211d"/><circle cx="67" cy="88" r="2.5" fill="white"/><circle cx="109" cy="88" r="2.5" fill="white"/><ellipse cx="90" cy="108" rx="10" ry="7" fill="#35251f"/><path d="M82 117 Q90 126 98 117" fill="none" stroke="#35251f" stroke-width="3" stroke-linecap="round"/><path class="buddy-paw" d="M51 132 Q59 121 67 132" fill="none" stroke="#5f402d" stroke-width="9" stroke-linecap="round"/><path class="buddy-paw" d="M113 132 Q121 121 129 132" fill="none" stroke="#5f402d" stroke-width="9" stroke-linecap="round"/>${legendary?'<path d="M52 59 Q90 40 128 59" fill="none" stroke="#8dd6ff" stroke-width="6"/>':''}</g><circle class="buddy-shine" cx="54" cy="59" r="5" fill="#fff" opacity=".7"/></svg>`;
- if(sp==="foal") return `<svg viewBox="0 0 180 180" aria-label="pet"><g class="buddy-body ${cls}"><path class="buddy-tail" d="M136 111 C166 115 163 80 145 74" fill="none" stroke="#5b3c31" stroke-width="11" stroke-linecap="round"/><path d="M59 68 Q39 35 49 18 Q70 29 74 61" fill="#9b684e" stroke="#593c32" stroke-width="5"/><path d="M121 68 Q141 35 131 18 Q110 29 106 61" fill="#9b684e" stroke="#593c32" stroke-width="5"/><ellipse cx="90" cy="105" rx="55" ry="50" fill="#b9805f" stroke="#593c32" stroke-width="5"/><ellipse cx="90" cy="119" rx="31" ry="26" fill="#dca886"/><ellipse class="buddy-eye" cx="70" cy="92" rx="7" ry="10" fill="#241c1a"/><ellipse class="buddy-eye delay" cx="110" cy="92" rx="7" ry="10" fill="#241c1a"/><circle cx="68" cy="89" r="2.5" fill="white"/><circle cx="108" cy="89" r="2.5" fill="white"/><path d="M84 108 Q90 112 96 108" fill="none" stroke="#593c32" stroke-width="3" stroke-linecap="round"/><path class="buddy-paw" d="M52 132 Q60 121 68 132" fill="none" stroke="#593c32" stroke-width="9" stroke-linecap="round"/><path class="buddy-paw" d="M112 132 Q120 121 128 132" fill="none" stroke="#593c32" stroke-width="9" stroke-linecap="round"/>${mature?'<path d="M55 66 Q90 47 125 66" fill="none" stroke="#f4d18b" stroke-width="6"/>':''}</g><circle class="buddy-shine" cx="55" cy="61" r="5" fill="#fff" opacity=".7"/></svg>`;
- return `<svg viewBox="0 0 180 180" aria-label="pet"><g class="buddy-body ${cls}"><path class="buddy-tail" d="M136 112 C166 125 167 78 144 77" fill="none" stroke="#d39a2e" stroke-width="13" stroke-linecap="round"/><path d="M57 67 Q42 30 55 17 Q76 32 77 63" fill="#f1bf48" stroke="#8c5b20" stroke-width="5"/><path d="M123 67 Q138 30 125 17 Q104 32 103 63" fill="#f1bf48" stroke="#8c5b20" stroke-width="5"/><ellipse cx="90" cy="105" rx="56" ry="49" fill="#f4c84e" stroke="#8c5b20" stroke-width="5"/><ellipse cx="90" cy="119" rx="31" ry="25" fill="#ffe28a"/><ellipse class="buddy-eye" cx="70" cy="92" rx="7" ry="9" fill="#2d2419"/><ellipse class="buddy-eye delay" cx="110" cy="92" rx="7" ry="9" fill="#2d2419"/><circle cx="68" cy="89" r="2.5" fill="white"/><circle cx="108" cy="89" r="2.5" fill="white"/><path d="M83 106 Q90 113 97 106" fill="none" stroke="#8c5b20" stroke-width="3" stroke-linecap="round"/><path class="buddy-wing" d="M42 100 Q26 112 43 127 Q55 132 61 119" fill="#e8ad36" stroke="#8c5b20" stroke-width="4"/><path class="buddy-wing" d="M138 100 Q154 112 137 127 Q125 132 119 119" fill="#e8ad36" stroke="#8c5b20" stroke-width="4"/><path class="buddy-paw" d="M57 130 Q65 121 73 132" fill="none" stroke="#8c5b20" stroke-width="8" stroke-linecap="round"/><path class="buddy-paw" d="M107 132 Q115 121 123 130" fill="none" stroke="#8c5b20" stroke-width="8" stroke-linecap="round"/><path d="M80 105 L90 111 L100 105 L90 115Z" fill="#ef7d3b" stroke="#8c5b20" stroke-width="2"/>${legendary?'<circle cx="90" cy="43" r="9" fill="#fff2a8" stroke="#d9a934" stroke-width="3"/><path d="M90 28 L93 37 L103 37 L95 43 L98 52 L90 47 L82 52 L85 43 L77 37 L87 37Z" fill="#fff"/>':''}</g><circle class="buddy-shine" cx="55" cy="61" r="5" fill="#fff" opacity=".7"/></svg>`;
+ const mature=stage>=3, grown=stage>=5, legendary=stage>=6;
+ const mood=state||"idle";
+ const common=`<defs>
+   <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+   <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity=".18"/></linearGradient>
+   <filter id="soft"><feGaussianBlur stdDeviation="1.5"/></filter>
+ </defs>`;
+ const face=(eyes="round")=>`
+   <g class="face">
+    <ellipse class="buddy-eye" cx="70" cy="82" rx="7" ry="10" fill="#2a2422"/><ellipse class="buddy-eye delay" cx="110" cy="82" rx="7" ry="10" fill="#2a2422"/>
+    <ellipse cx="68" cy="79" rx="2.5" ry="3.5" fill="#fff"/><ellipse cx="108" cy="79" rx="2.5" ry="3.5" fill="#fff"/>
+    ${mood==="sad"?`<path d="M62 75 Q70 70 77 75M103 75 Q110 70 118 75" fill="none" stroke="#553b35" stroke-width="3" stroke-linecap="round"/>`:''}
+    ${mood==="happy"?`<path d="M63 82 Q70 88 77 82M103 82 Q110 88 117 82" fill="none" stroke="#553b35" stroke-width="3.2" stroke-linecap="round"/>`:''}
+   </g>`;
+ if(sp==="cat") return `<svg viewBox="0 0 180 180" aria-label="cartoon cat">
+  ${common}<g class="buddy-body">
+   <path class="buddy-tail" d="M139 121 C166 132 170 99 151 91 C139 86 137 99 149 102" fill="none" stroke="#b9693f" stroke-width="14" stroke-linecap="round"/>
+   <path d="M47 65 L40 28 Q40 20 48 25 L69 47 Q90 38 111 47 L132 25 Q140 20 140 28 L133 65" fill="#d77b49" stroke="#673f32" stroke-width="5" stroke-linejoin="round"/>
+   <path d="M47 42 L59 52 L45 57Z M133 42 L121 52 L135 57Z" fill="#f4a477"/>
+   <ellipse cx="90" cy="105" rx="57" ry="50" fill="#d77b49" stroke="#673f32" stroke-width="5"/>
+   <ellipse cx="90" cy="119" rx="34" ry="27" fill="url(#belly)"/>
+   <path d="M75 47 Q90 57 105 47" fill="none" stroke="#9e5439" stroke-width="5" stroke-linecap="round"/>
+   ${face()}
+   <ellipse cx="90" cy="101" rx="9" ry="7" fill="#563a32"/><path d="M90 107 Q82 116 75 110M90 107 Q98 116 105 110" fill="none" stroke="#563a32" stroke-width="3" stroke-linecap="round"/>
+   <path d="M63 104 H42 M63 111 H40 M117 104 H138 M117 111 H140" stroke="#75483a" stroke-width="2.5" stroke-linecap="round"/>
+   <path class="buddy-paw" d="M53 137 Q60 125 69 137" fill="#d77b49" stroke="#673f32" stroke-width="5"/><path class="buddy-paw" d="M111 137 Q120 125 127 137" fill="#d77b49" stroke="#673f32" stroke-width="5"/>
+   ${mature?`<path d="M51 68 Q59 57 67 51M129 68 Q121 57 113 51" fill="none" stroke="#f0aa72" stroke-width="4" stroke-linecap="round"/>`:''}
+   ${grown?`<path d="M74 39 Q90 29 106 39" fill="none" stroke="#f7cf76" stroke-width="5" stroke-linecap="round"/>`:''}
+   ${legendary?`<circle cx="90" cy="29" r="7" fill="#ffe58a" stroke="#c98b28" stroke-width="3"/>`:''}
+   <ellipse class="buddy-shine" cx="58" cy="59" rx="8" ry="4" fill="#fff" opacity=".35" transform="rotate(-25 58 59)"/>
+  </g></svg>`;
+ if(sp==="dog") return `<svg viewBox="0 0 180 180" aria-label="cartoon dog">
+  ${common}<g class="buddy-body">
+   <path class="buddy-tail" d="M138 122 C168 126 170 91 151 87" fill="none" stroke="#9b633f" stroke-width="14" stroke-linecap="round"/>
+   <path d="M50 64 Q25 38 35 21 Q39 16 47 22 Q65 36 68 55" fill="#a96e45" stroke="#613f30" stroke-width="5"/><path d="M130 64 Q155 38 145 21 Q141 16 133 22 Q115 36 112 55" fill="#a96e45" stroke="#613f30" stroke-width="5"/>
+   <ellipse cx="90" cy="105" rx="58" ry="51" fill="#c88853" stroke="#613f30" stroke-width="5"/>
+   <ellipse cx="90" cy="119" rx="35" ry="28" fill="#efc28e"/>
+   ${face()}
+   <ellipse cx="90" cy="103" rx="11" ry="8" fill="#332522"/><path d="M90 110 Q83 119 75 113 M90 110 Q97 119 105 113" fill="none" stroke="#332522" stroke-width="3" stroke-linecap="round"/>
+   <path class="buddy-paw" d="M51 138 Q59 125 69 138" fill="#c88853" stroke="#613f30" stroke-width="5"/><path class="buddy-paw" d="M111 138 Q121 125 129 138" fill="#c88853" stroke="#613f30" stroke-width="5"/>
+   ${mature?`<path d="M58 59 Q90 46 122 59" fill="none" stroke="#e3a46f" stroke-width="6" stroke-linecap="round"/>`:''}
+   ${grown?`<path d="M67 45 Q90 31 113 45" fill="none" stroke="#7e4d35" stroke-width="5" stroke-linecap="round"/>`:''}
+   ${legendary?`<path d="M77 33 L83 23 L90 31 L97 23 L103 33" fill="none" stroke="#8ed6ff" stroke-width="5" stroke-linecap="round"/>`:''}
+   <ellipse class="buddy-shine" cx="58" cy="58" rx="8" ry="4" fill="#fff" opacity=".35" transform="rotate(-25 58 58)"/>
+  </g></svg>`;
+ if(sp==="foal") return `<svg viewBox="0 0 180 180" aria-label="cartoon foal">
+  ${common}<g class="buddy-body">
+   <path class="buddy-tail" d="M139 119 C168 127 168 94 150 86" fill="none" stroke="#704938" stroke-width="13" stroke-linecap="round"/>
+   <path d="M53 65 L43 25 Q42 18 49 22 L73 50 Q90 43 107 50 L131 22 Q138 18 137 25 L127 65" fill="#a8755b" stroke="#593c32" stroke-width="5" stroke-linejoin="round"/>
+   <path d="M49 35 L62 51 L47 55Z M131 35 L118 51 L133 55Z" fill="#d99c7f"/>
+   <ellipse cx="90" cy="105" rx="56" ry="51" fill="#b98368" stroke="#593c32" stroke-width="5"/>
+   <ellipse cx="90" cy="120" rx="34" ry="27" fill="#e0ad91"/>
+   ${face()}
+   <path d="M80 105 Q90 112 100 105" fill="none" stroke="#593c32" stroke-width="4" stroke-linecap="round"/>
+   <path class="buddy-paw" d="M53 138 Q61 125 70 138" fill="#b98368" stroke="#593c32" stroke-width="5"/><path class="buddy-paw" d="M110 138 Q119 125 128 138" fill="#b98368" stroke="#593c32" stroke-width="5"/>
+   <path d="M59 65 Q67 48 75 43M121 65 Q113 48 105 43" fill="none" stroke="#684636" stroke-width="5" stroke-linecap="round"/>
+   ${mature?`<path d="M57 63 Q90 42 123 63" fill="none" stroke="#e8c29b" stroke-width="7" stroke-linecap="round"/>`:''}
+   ${grown?`<path d="M68 43 Q90 28 112 43" fill="none" stroke="#5d4034" stroke-width="6" stroke-linecap="round"/>`:''}
+   ${legendary?`<path d="M90 27 L94 36 L104 37 L96 43 L99 53 L90 47 L81 53 L84 43 L76 37 L86 36Z" fill="#f8d86a" stroke="#9b7120" stroke-width="2"/>`:''}
+   <ellipse class="buddy-shine" cx="58" cy="59" rx="8" ry="4" fill="#fff" opacity=".35" transform="rotate(-25 58 59)"/>
+  </g></svg>`;
+ return `<svg viewBox="0 0 180 180" aria-label="cartoon chick">
+  ${common}<g class="buddy-body">
+   <path class="buddy-tail" d="M137 119 C165 129 169 94 150 87" fill="none" stroke="#d89a2d" stroke-width="13" stroke-linecap="round"/>
+   <path d="M57 62 Q45 39 52 22 Q55 16 61 24 L76 48 Q90 42 104 48 L119 24 Q125 16 128 22 Q135 39 123 62" fill="#f2c84b" stroke="#80591f" stroke-width="5" stroke-linejoin="round"/>
+   <ellipse cx="90" cy="106" rx="57" ry="51" fill="#f4ca4f" stroke="#80591f" stroke-width="5"/>
+   <ellipse cx="90" cy="121" rx="34" ry="27" fill="#ffe08a"/>
+   ${face()}
+   <path d="M82 104 L90 111 L98 104 L90 115Z" fill="#e67e35" stroke="#80591f" stroke-width="2"/>
+   <path class="buddy-wing" d="M40 101 Q23 112 39 130 Q51 137 61 120 Q53 109 40 101Z" fill="#eab53b" stroke="#80591f" stroke-width="4"/>
+   <path class="buddy-wing" d="M140 101 Q157 112 141 130 Q129 137 119 120 Q127 109 140 101Z" fill="#eab53b" stroke="#80591f" stroke-width="4"/>
+   <path class="buddy-paw" d="M56 137 Q65 126 74 137" fill="none" stroke="#d9822d" stroke-width="6" stroke-linecap="round"/><path class="buddy-paw" d="M106 137 Q115 126 124 137" fill="none" stroke="#d9822d" stroke-width="6" stroke-linecap="round"/>
+   ${mature?`<path d="M60 63 Q90 45 120 63" fill="none" stroke="#ffe28a" stroke-width="7" stroke-linecap="round"/>`:''}
+   ${grown?`<path d="M71 45 Q90 31 109 45" fill="none" stroke="#d99a2d" stroke-width="6" stroke-linecap="round"/>`:''}
+   ${legendary?`<path d="M90 25 L94 34 L104 35 L96 41 L99 51 L90 45 L81 51 L84 41 L76 35 L86 34Z" fill="#fff0a0" stroke="#c28a24" stroke-width="2"/>`:''}
+   <ellipse class="buddy-shine" cx="58" cy="59" rx="8" ry="4" fill="#fff" opacity=".4" transform="rotate(-25 58 59)"/>
+  </g></svg>`;
 }
 function petLook(k,si,state="idle"){const p=pet(k),sp=p.sp||"bird",pe=$("petEmoji");if(!pe)return;pe.innerHTML=petSvg(sp,si,state);pe.dataset.stage=si;pe.dataset.species=sp;pe.classList.toggle("legendary",si===6);if(si===6)pe.style.filter="drop-shadow(0 0 14px #ffd54a)";else pe.style.removeProperty("filter");let b=$("eggb");if(!b){b=el("div",{id:"eggb",style:"position:absolute;left:50%;top:60%;transform:translateX(-50%);font-size:34px;pointer-events:none"});document.querySelector(".petwrap").append(b)}b.textContent=""}
 const rawG=k=>k.s.grow===undefined?k.s.tot:k.s.grow;
@@ -655,7 +725,7 @@ const TOUR=[
  {sel:"#goals",page:1,opt:1,t:"Parent gestures 👆",x:"In parent mode: tap = achieved ✅ · hold = fail ❌ · double-tap = undo. The tiny switch (🔁) on each goal makes it repeat every day; otherwise it disappears after its day. Thin bars show the time left."},
  {sel:"#goals",page:1,opt:1,t:"Evening review 🌙",x:"At your review time, finished and failed goals stay on the chart and the rest show ⏳ Achieved? for you to decide. A new day starts at 2am (changeable in Settings); anything still on ⏳ then counts as failed."},
  {sel:"#weekly",page:1,opt:1,t:"Weekly challenge 🏆",x:"One bigger goal for the week with a countdown bar. Tap when achieved for a gold star, or hold to cancel. When the week ends you set a new one."},
- {sel:"#petEmoji",page:4,t:"Meet Buddy 🐣",x:"Buddy grows as stars are earned. Tap him for a cuddle reaction!"},
+ {sel:"#petEmoji",page:4,t:"Meet Buddy",x:"Buddy grows as stars are earned. Tap him for a cuddle reaction!"},
  {sel:"#feedB",page:4,t:"Feed Buddy 🍎",x:"Food from good deeds goes in the bowl (the number). Tap Feed now.",until:()=>acts.fed},
  {sel:".g3b",page:4,t:"Play and cuddle",x:"Toy and Hide are for fun. Cuddle uses love from good deeds."},
  {sel:"#stage",page:4,t:"Buddy's day 🌙",x:"Buddy wakes up in the morning and sleeps at night. Open the app soon after he wakes for a love boost, and at bedtime tap 🌙 to tuck him in. Times are set in Settings → Buddy."},
